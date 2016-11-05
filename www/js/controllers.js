@@ -8,46 +8,31 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-
+console.log('appctrl');
   // Form data for the login modal
-  $scope.loginData = {};
+  
  
   // Triggered in the login modal to close it
- $scope.closeLogin = function() {
-   //$scope.modal.hide();
-	  authServices.init($scope)
-		  .then(function(modal) {
-		  modal.hide();
-	  	});
- };
+/*  $scope.closeLogin = function() {
+	  	  console.log('hi');
+	  alert(0);
+	  $scope.modal.hide();
+  };*/
 
   // Open the login modal
-  $scope.login = function() {
+/*  $scope.login = function() {
 	  authServices.init($scope)
 		  .then(function(modal) {
 		  modal.show();
 	  	});
-  };
+  };*/
 $scope.signout = function(){
 	console.log(window.localStorage.getItem("token"))
 	window.localStorage.removeItem('token');
 	console.log('rmvd' + window.localStorage.getItem("token"))
 }
-	console.log('Doing login', $scope.loginData);
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-	  $http.post('http://192.168.2.120:7000/moderator/login', $scope.loginData ).success(function(response){
-		  console.log(response.status , response);
-		  authServices.getLoggedIn(response.userId);
-	  }).error(function(err){
-	  	console.log(err  + '--err');
-		  $scope.closeLogin();
-	  })
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
- 
-  };
+	
+
 })
 
 .controller('PlaylistsCtrl', function($scope) {
@@ -61,5 +46,25 @@ $scope.signout = function(){
   ];
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('loginCtrl', function($scope, $state, $location, $http, authServices) {
+	console.log('----------');
+  // Perform the login action when the user submits the login form
+  $scope.loginData = {};
+  $scope.doLogin = function() {
+    console.log('Doing login', $scope.loginData);
+	  $http.post('http://192.168.2.58:7000/api/moderator/login', $scope.loginData ).success(function(response){
+		  console.log(response.status , response + '--succ');
+		  if( response.status  ){
+		  	authServices.getLoggedIn(response.userId);
+			$scope.closeLogin();
+		  	$state.go('app.details');
+		  }
+	  }).error(function(err){
+	  	console.log(err  + '--err');
+	  })
+    // Simulate a login delay. Remove this and replace with your login
+    // code if using a login system
+ 
+  };
+	
 });

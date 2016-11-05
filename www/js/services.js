@@ -14,7 +14,7 @@ angular.module('starter').factory('authServices', ['$http', '$ionicModal', '$roo
 			  return modal;
 			});
 
-			/*$scope.login = function() {
+			 $scope.login = function() {
 			   $scope.modal.show();
 			 };
 			 $scope.closeLogin = function() {
@@ -22,7 +22,7 @@ angular.module('starter').factory('authServices', ['$http', '$ionicModal', '$roo
 			 };
 			 $scope.$on('$destroy', function() {
 			   $scope.modal.remove();
-			 });*/
+			 }); 
 
 			return promise;
 		  },
