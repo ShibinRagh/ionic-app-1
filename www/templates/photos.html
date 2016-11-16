@@ -1,5 +1,24 @@
 <ion-view view-title="Photos">
   <ion-content>
-    <h1>Playlist</h1>
-  </ion-content>
+    <form name="farmPhotos" ng-submit="doFarmPhotos(farmPhotos)" class="farm-photos" novalidate>
+		<div class="list">
+		  <label class="item item-input item-stacked-label">
+			<span class="input-label">Product thumb image</span>
+			<input type="file" name="product Thumb Img" placeholder="" ng-model="farm.productthumbtmg" class="input-file" required> 
+		  </label>
+		  <label class="item item-input item-stacked-label">
+			<span class="input-label">Banner image</span>
+			<input type="text" name="bannerImg" placeholder="" ng-model="farm.bannerimg" class="input-file">
+		  
+		
+		  </label>
+		     <label class="item item-input item-stacked-label">
+		     <input type="file" name="test" placeholder="" ng-model="farm.test" class="">
+			 </label>
+		</div>
+    	<div class="padding">
+    		  <button class="button button-block button-positive">Next</button>
+    	</div>
+    </form>
+  </ion-content> 
 </ion-view>

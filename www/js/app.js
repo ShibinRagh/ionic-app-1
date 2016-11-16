@@ -6,8 +6,11 @@
 // 'starter.controllers' is found in controllers.js
 
 (function (angular) {
-var app = angular.module('starter', ['ionic', 'starter.controllers']);
-
+var app = angular.module('starter', ['ionic', 'starter.controllers', 'ngFileUpload']);
+app.constant("Resources", {
+	"API": "http://192.168.2.41:7000" //without end slash '/'
+});
+	
 function router($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
 
@@ -17,12 +20,12 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
-  .state('app.details', {
-  url:'/details',
+  .state('app.register', {
+  url:'/register',
   views:{
   	'menuContent': {
-		templateUrl: 'templates/details.html',
-		//controller: 'farmDetailCtrl',
+		templateUrl: 'templates/register.html',
+		controller: 'farmRegisterCtrl', 
 		resolve:{
 			loginChk : loginChk
 		} 
@@ -35,6 +38,7 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
     views: {
       'menuContent': {
         templateUrl: 'templates/location.html',
+		controller: 'locationCtrl',
 		resolve:{
 			loginChk : loginChk
 		} 
@@ -46,6 +50,7 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
       views: {
         'menuContent': {
           templateUrl: 'templates/products.html',
+		  controller: 'productsCtrl',
 		  resolve:{
 			  loginChk : loginChk
 		  } 
@@ -57,7 +62,7 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
       views: {
         'menuContent': {
           templateUrl: 'templates/photos.html',
-          //controller: 'photosCtrl',
+          controller: 'photosCtrl',
 		  resolve:{
 			  loginChk : loginChk
 		  } 
@@ -65,22 +70,22 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
       }
     })
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/details');
+  $urlRouterProvider.otherwise('/app/register');
 }
 function loginChk ($rootScope, authServices, $location, $state){
 	var token = window.localStorage.getItem('token');
-	if (token === null || token === 'undefined' ) {
+/*	if (token === null || token === 'undefined' ) {
 		var currentPage = $location.path().split('/').pop();
-		if(currentPage === 'details'){
+		if(currentPage === 'register'){
 			console.log(token + ' no token'); 
 			authServices.init($rootScope)
 			.then(function(modal) {
 			modal.show();
 			});
 		}else{
-			$location.path('/app/details');
+			$location.path('/app/register');
 		}
-	} 
+	} */
 }
 app.run(function($ionicPlatform, $rootScope, $location, authServices) {
   $ionicPlatform.ready(function() {
@@ -98,6 +103,13 @@ app.run(function($ionicPlatform, $rootScope, $location, authServices) {
 
 });
 $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){});
+	
+$(document).on({
+    'DOMNodeInserted': function() {
+        $('.pac-item, .pac-item span', this).addClass('needsclick');
+    }
+},'.pac-container');
+	
 });
 app.config(router);
 })(window.angular);

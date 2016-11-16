@@ -1,5 +1,18 @@
 <ion-view view-title="Farm Location">
   <ion-content>
-    <h1>Set Location</h1>
+  <form class="padding">
+	<div class="list list-inset">
+	  <label class="item item-input">
+		<i class="icon ion-search placeholder-icon"></i>
+		<input type="text" placeholder="Search" id="place" placeholder="Type your location here" name="place">
+	  </label>
+	</div>
+    <div id="farmLctnMap" style="width:100%; height:400px;"></div>
+    <input id="latitude" name="latitude" value="10.089693830524824" type="hidden">
+    <input id="longitude" name="longitude" value="77.0421870009277" type="hidden">
+	  <button class="button button-block button-positive" ng-click="submitted=true">
+  		Update location
+	  </button>
+  </form>
   </ion-content>
 </ion-view>

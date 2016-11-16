@@ -1,5 +1,69 @@
 <ion-view view-title="Products">
   <ion-content>
-    <h1>Products</h1>
+  	<form>
+  	<div class="list">
+  		
+  		<label class="item item-input item-select item-stacked-label"> 
+	    <span class="input-label">Add Category</span>
+		  <select ng-options="pdc as pdc.categoryName for pdc in productsCategories" 
+		  ng-model="selectedPDC" 
+		  ng-change="openSubCategory(selectedPDC)">
+		  	<option value="">Selected Category</option>
+		  </select>
+	  </label>
+  	  <label class="item item-input item-select item-stacked-label" ng-show="subCategoriesBlock">
+			<span class="input-label">Sub Category</span>
+			<select ng-options="SubPdc as SubPdc.categoryName for SubPdc in subProductsCategories" 
+		    ng-model="selectedSubPDC" 
+		    ng-change="openProductName(selectedSubPDC)">
+				<option value="">Select sub category</option>
+			</select>
+  	  </label>
+  	  <label class="item item-input item-select item-stacked-label" ng-show="productNameBlock">
+			<span class="input-label">Select Product</span>
+			<select ng-options="product as product.productName for product in productDetails" 
+		    ng-model="selectedProduct" 
+		    ng-change="openProductDetail(selectedProduct)">
+				<option value="">Select product</option>
+			</select>
+  	  </label>
+    </div>
+	</form>
+ 	<form ng-submit="doSaveProduct(saveProduct)" name="saveProduct"  novalidate ng-<!--show="productFormBlock"-->>
+  	
+   
+  	
+  	<label class="item item-input item-stacked-label">
+		<span class="input-label">Product Name</span>
+		<input type="text" placeholder="Thenga" ng-model="product.productName">
+	</label>
+  	
+  	<label class="item item-input item-stacked-label">
+		<span class="input-label">Product Price</span>
+		<input type="text" placeholder="Thenga" ng-model="product.price">
+	</label>
+  	<label class="item item-input item-stacked-label">
+		<span class="input-label">Product Quantity</span>
+		<input type="text" placeholder="Thenga" ng-model="product.quantity">
+	</label>
+  	<label class="item item-input item-stacked-label">
+		<span class="input-label">Product Price Unity</span>
+		<input type="text" placeholder="Thenga" ng-model="product.priceUnit">
+	</label>
+  	
+  	<label class="item item-input item-stacked-label">
+		<span class="input-label">Product Image</span>
+		<input type="file" ngf-select ng-model="saveProduct.picFile" name="file"    
+             accept="image/*" >
+	</label>
+  	
+  	<div class="padding">
+		<button class="button button-block button-positive"
+			 ng-click="submitted=true">
+			Next
+		</button>
+  	</div>
+  	
+  	</form>
   </ion-content>
 </ion-view>

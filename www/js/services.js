@@ -26,11 +26,14 @@ angular.module('starter').factory('authServices', ['$http', '$ionicModal', '$roo
 
 			return promise;
 		  },
-		getLoggedIn: function(user){
-			$rootScope.user = user;
-			window.localStorage.setItem("token", user);
-			console.log(user);
+		
+		getLoggedIn: function(response){
+			//$rootScope.token = response.token;
+			window.localStorage.setItem("token", response.token);
+			window.localStorage.setItem("userId", response._id);
+			//$rootScope.userId = response._id;
 		} 
+		
 	}
 
 }]);

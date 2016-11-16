@@ -3,20 +3,28 @@
     <h1 class="title">Login</h1>
   </ion-header-bar>
   <ion-content>
-    <form ng-submit="doLogin()"> 
+    <form ng-submit="doLogin(loginForm)" name="loginForm" class="login-form" novalidate> 
       <div class="list">
         <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" ng-model="loginData.email">
+          <span class="input-label">Email</span>
+          <input type="email" name="email" ng-model="loginData.email" required>
         </label>
+        <p ng-show="submitted && loginForm.email.$error.required" class="alert alert-error">Email required.</p>
+        <p ng-show="submitted && loginForm.email.$error.email" class="alert alert-error">Invalid email.</p>
         <label class="item item-input">
           <span class="input-label">Password</span>
-          <input type="password" ng-model="loginData.password">
+          <input type="password" name="password" ng-model="loginData.password" required>
         </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Log in</button>
-        </label>
+        <p ng-show="submitted && loginForm.password.$error.required" class="alert alert-error">Type password.</p>
       </div>
+      <div class="padding">
+          <button class="button button-block button-positive" type="submit" ng-click="submitted=true">Log in</button>
+        </div>
     </form>
+    <div class="padding">
+      	<div class="alert alert-error" ng-show="errormessage">
+  			{{errormessage}}
+		</div>
+	  </div>
   </ion-content>
 </ion-modal-view>

@@ -1,1 +1,58 @@
 /* Empty. Add your own CSS if you like */
+body, h1, h2, h3, h4, h5, h6, input, textarea, *{
+	font-family: 'Roboto', sans-serif;
+}
+.alert{
+	display:block;
+	padding:10px 15px;
+	font-size:13px;
+	border-radius:2px;
+	border:1px solid rgba(0,0,0,0.11);
+}
+.alert-error{
+	background:#D9534F;
+	color:#fff;
+}
+
+.form-field-error input::-moz-placeholder, .form-field-error textarea::-moz-placeholder,
+.form-field-error input::placeholder, .form-field-error textarea::placeholder{
+	color:#D9534F;
+}
+
+.error{
+	color:#D9534F;
+	font-size:12px;
+}
+.farm-register .error{
+	padding:0 15px;
+}
+
+
+.login-form .error{
+	padding-left:15px;
+}
+.login-form .alert-error{
+	position: relative;
+	background:#E04E4C;
+	padding:7px 15px;
+	font-size:12px;
+	margin:2px 10px 6px;
+}
+.login-form .alert:after{
+	width:0;
+	height:0;
+	position:absolute;
+	display:block;
+	content:'';
+	border:7px solid transparent;
+	border-color:transparent transparent #E04E4C;
+	top:-13px;
+	left:10;
+	z-index:100;
+}
+
+.farm-photos .input-file{
+	height:auto;
+	width:100%;
+	display:block;
+}
