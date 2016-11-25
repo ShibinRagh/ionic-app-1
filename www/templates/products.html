@@ -29,38 +29,31 @@
   	  </label>
     </div>
 	</form>
- 	<form ng-submit="doSaveProduct(saveProduct)" name="saveProduct"  novalidate ng-<!--show="productFormBlock"-->>
-  	
-   
-  	
-  	<label class="item item-input item-stacked-label">
-		<span class="input-label">Product Name</span>
-		<input type="text" placeholder="Thenga" ng-model="product.productName">
-	</label>
-  	
+	<div class="card" ng-show="productNotAdded">
+	  <div class="item item-text-wrap">
+		<strong>{{productName}} </strong> is already added, please choose another one.
+	  </div>
+	</div>
+ 	<form ng-submit="doSaveProduct(saveProduct)" name="saveProduct"  novalidate ng-show="productFormBlock">
   	<label class="item item-input item-stacked-label">
 		<span class="input-label">Product Price</span>
-		<input type="text" placeholder="Thenga" ng-model="product.price">
+		<input type="text" placeholder="" name="price" ng-model="product.price">
 	</label>
   	<label class="item item-input item-stacked-label">
 		<span class="input-label">Product Quantity</span>
-		<input type="text" placeholder="Thenga" ng-model="product.quantity">
+		<input type="text" placeholder="" name="quantity" ng-model="product.quantity">
 	</label>
   	<label class="item item-input item-stacked-label">
 		<span class="input-label">Product Price Unity</span>
-		<input type="text" placeholder="Thenga" ng-model="product.priceUnit">
+		<input type="text" name="unit" placeholder="" value="" ng-model="product.unit" class="price-unity" readonly>
 	</label>
-  	
-  	<label class="item item-input item-stacked-label">
-		<span class="input-label">Product Image</span>
-		<input type="file" ngf-select ng-model="saveProduct.picFile" name="file"    
-             accept="image/*" >
-	</label>
-  	
+	  
   	<div class="padding">
-		<button class="button button-block button-positive"
-			 ng-click="submitted=true">
-			Next
+	<div ng-show="productAddStatusError" class="alert alert-error margin-B">{{productAddStatusError}}</div>
+	<div ng-show="productAddStatusSuccess" class="alert alert-success margin-B">{{productAddStatusSuccess}}</div> 
+		<button class="button button-block button-positive" ng-click="submitted=true" ng-class="{'btnLoader': btnLoader}">
+			Submit
+			<ion-spinner icon="ripple"></ion-spinner>
 		</button>
   	</div>
   	

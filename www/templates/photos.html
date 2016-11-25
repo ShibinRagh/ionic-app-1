@@ -3,21 +3,21 @@
     <form name="farmPhotos" ng-submit="doFarmPhotos(farmPhotos)" class="farm-photos" novalidate>
 		<div class="list">
 		  <label class="item item-input item-stacked-label">
-			<span class="input-label">Product thumb image</span>
-			<input type="file" name="product Thumb Img" placeholder="" ng-model="farm.productthumbtmg" class="input-file" required> 
+		    <button type="button" class="button button-stable" ngf-select ng-model="farmPhotos.thump" name="file"    
+					accept="image/*" >Upload farm banner <i class="icon ion-ios-upload"></i></button>
+					<span class="success">{{farmPhotos.thump.name}}</span>
 		  </label>
 		  <label class="item item-input item-stacked-label">
-			<span class="input-label">Banner image</span>
-			<input type="text" name="bannerImg" placeholder="" ng-model="farm.bannerimg" class="input-file">
-		  
-		
+			<button type="button" class="button button-stable" ngf-select ng-model="farmPhotos.banner" name="file2"    
+					accept="image/*" >Upload farm thump <i class="icon ion-ios-upload"></i></button>
 		  </label>
-		     <label class="item item-input item-stacked-label">
-		     <input type="file" name="test" placeholder="" ng-model="farm.test" class="">
-			 </label>
 		</div>
+    	
+    <div class="alert alert-success margin-B" ng-if="photoStatusSuccess">{{photoStatusSuccess}}</div>
+    <div class="alert alert-error margin-B" ng-if="photoStatusError">{{photoStatusError}}</div>
+    	
     	<div class="padding">
-    		  <button class="button button-block button-positive">Next</button>
+    		  <button class="button button-block button-positive">Submit and publish</button>
     	</div>
     </form>
   </ion-content> 

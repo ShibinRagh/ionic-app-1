@@ -17,8 +17,11 @@
         </label>
         <p ng-show="submitted && loginForm.password.$error.required" class="alert alert-error">Type password.</p>
       </div>
-      <div class="padding">
-          <button class="button button-block button-positive" type="submit" ng-click="submitted=true">Log in</button>
+      <div class="padding"> 
+          <button ng-class="{'btnLoader': btnLoader}" class="button button-block button-positive" type="submit" ng-click="submitted=true">
+          	Log in 
+          	<ion-spinner icon="ripple"></ion-spinner>
+		  </button>
         </div>
     </form>
     <div class="padding">

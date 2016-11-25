@@ -1,13 +1,14 @@
 <ion-view view-title="Farm Register">
   <div id="map" data-tap-disabled="true"></div>
   <ion-content>
-  	<form ng-submit="doFarmRegister(farmRegister)" name="farmRegister" class="farm-register" novalidate>
+  	<span ng-click="test()">Open login</span>
+  	<form ng-submit="doFarmRegister(farmRegister)" name="farmRegister" class="farm-register padding" novalidate>
   	<div class="list">
   	
   	  
 	  <label class="item item-input item-stacked-label" ng-class="{'form-field-error' :  submitted && farmRegister.email.$invalid}"> 
 	    <span class="input-label">Email</span>
-		<input type="email" name="email" placeholder="Email" ng-model="farm.email" required>
+		<input type="email" name="email" placeholder="Email" ng-model="farm.contactEmail" required>
 	  </label>
 	  <p ng-show="submitted && farmRegister.email.$error.required" class="error">Email required.</p>
 	  <p ng-show="submitted && farmRegister.email.$error.email" class="error">Invalid email.</p>
@@ -15,21 +16,24 @@
 	  
 	  <label class="item item-input item-stacked-label"  ng-class="{'form-field-error' :  submitted && farmRegister.name.$invalid}">
 	    <span class="input-label">Name</span>
-		<input type="text" name="name" placeholder="Farm Name" ng-model="farm.name" required>
+		<input type="text" name="name" placeholder="Farm Name" ng-model="farm.farmName" required>
 	  </label>
 	  	 <p ng-show="submitted && farmRegister.name.$error.required" class="error">Please type farm name.</p>
 	  	 
-	  <label class="item item-input item-stacked-label"  ng-class="{'form-field-error' :  submitted && farmRegister.description.$invalid}">
+	  <label class="item item-input item-stacked-label margin-B"  ng-class="{'form-field-error' :  submitted && farmRegister.description.$invalid}">
 	    <span class="input-label">Description</span>
 		<textarea name="description" placeholder="Description" ng-model="farm.description" required></textarea>
 	  </label>
 	  <p ng-show="submitted && farmRegister.description.$error.required" class="error">Please type about farm.</p>
-	  <div class="padding">
-	  <button class="button button-block button-positive"
-  		 ng-click="submitted=true">
+	  
+	  <div ng-show="farmRegisterStatusError" class="alert alert-error margin-B">{{farmRegisterStatusError}}</div>
+	  <div ng-show="farmRegisterStatusSuccess" class="alert alert-success margin-B">{{farmRegisterStatusSuccess}}</div> 
+	 
+	  <button class="button button-block button-positive" ng-class="{'btnLoader': btnLoader}" ng-click="submitted=true">
   		Next
+  		<ion-spinner icon="ripple"></ion-spinner>
 	  </button>
-	  </div>
+	   
     </div>
 	 </form>
   </ion-content>

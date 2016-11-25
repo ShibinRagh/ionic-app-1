@@ -28,11 +28,13 @@ angular.module('starter').factory('authServices', ['$http', '$ionicModal', '$roo
 		  },
 		
 		getLoggedIn: function(response){
-			//$rootScope.token = response.token;
 			window.localStorage.setItem("token", response.token);
 			window.localStorage.setItem("userId", response._id);
-			//$rootScope.userId = response._id;
-		} 
+		},
+		selectFarm: function(responseFarmId){
+			window.localStorage.setItem("farmId", responseFarmId);
+		}
+		
 		
 	}
 

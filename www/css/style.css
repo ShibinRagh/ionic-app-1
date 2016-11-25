@@ -13,7 +13,21 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, *{
 	background:#D9534F;
 	color:#fff;
 }
+.alert-success{
+	background:#65CE6F;
+	color:#fff;
+}
 
+.padding-LR{
+	padding-left:10px;
+	padding-right:10px;
+}
+.button.button-block, button.button.button-full{
+	margin:0;
+}
+.margin-B{
+	margin-bottom:10px;
+}
 .form-field-error input::-moz-placeholder, .form-field-error textarea::-moz-placeholder,
 .form-field-error input::placeholder, .form-field-error textarea::placeholder{
 	color:#D9534F;
@@ -56,3 +70,27 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, *{
 	width:100%;
 	display:block;
 }
+
+button .spinner{
+	position:absolute;
+	width:27px;
+	height:27px;
+	left:0;
+	right:0;
+	bottom:0;
+	top:0;
+	margin:auto;
+	display:none;
+	fill: #fff;
+    stroke: #fff;
+}
+button.btnLoader{
+	color:rgba(255, 255, 255, 0.11) !important;
+}
+button.btnLoader .spinner{
+	display:block;
+}
+.farm-location .list-inset{
+	margin:0 0 10px;
+}
+ 

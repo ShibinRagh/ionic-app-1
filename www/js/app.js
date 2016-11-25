@@ -20,6 +20,19 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
+  .state('app.selectfarm', {
+  url:'/selectfarm',
+  views:{
+  	'menuContent': {
+		templateUrl: 'templates/selectfarm.html',
+		controller: 'selectfarmCtrl', 
+		resolve:{
+			loginChk : loginChk
+		} 
+	}
+  }
+  })
+  
   .state('app.register', {
   url:'/register',
   views:{
@@ -73,8 +86,19 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise('/app/register');
 }
 function loginChk ($rootScope, authServices, $location, $state){
-	var token = window.localStorage.getItem('token');
-/*	if (token === null || token === 'undefined' ) {
+	token =  window.localStorage.getItem('token');
+	userId = window.localStorage.getItem('userId');
+	farmId = window.localStorage.getItem('farmId');
+	
+	console.log(farmId +'-'+ userId +'-'+ token);
+	// temporary fn
+	$rootScope.test = function(){
+		authServices.init($rootScope)
+		.then(function(modal) {
+			modal.show();
+		});
+	};
+	if (token === null || token === 'undefined' ) {
 		var currentPage = $location.path().split('/').pop();
 		if(currentPage === 'register'){
 			console.log(token + ' no token'); 
@@ -85,24 +109,24 @@ function loginChk ($rootScope, authServices, $location, $state){
 		}else{
 			$location.path('/app/register');
 		}
-	} */
+	}  
 }
 app.run(function($ionicPlatform, $rootScope, $location, authServices) {
+ 	
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-
 });
 $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){});
+
 	
 $(document).on({
     'DOMNodeInserted': function() {
